@@ -22,9 +22,9 @@
       </div>
       <div class="meta-container relative h-[80px] bg-[rgba(0,0,0,0.5)]">
         <div
-          class="flex flex-row justify-around pr-[120px] ml-[330px] h-full py-[20px]"
+          class="flex flex-row pr-[120px] md:ml-[290px] lg:ml-[310px] xl:ml-[330px] h-full py-[20px] md:overflow-x-scroll"
         >
-          <div class="meta-section">
+          <div class="meta-section flex-2">
             <div class="flex flex-row items-center">
               <svg
                 width="28"
@@ -38,7 +38,9 @@
                   fill="#FFB802"
                 />
               </svg>
-              <h5 class="font-semibold text-[36px] text-white-soft ml-[10px]">
+              <h5
+                class="font-semibold text-white-soft ml-[10px] text-sm md:text-2xl xl:text-4xl"
+              >
                 7.0
               </h5>
               <div class="ml-3">
@@ -48,22 +50,22 @@
             </div>
           </div>
           <div class="divider" />
-          <div class="meta-section">
+          <div class="meta-section flex-1">
             <h5 class="meta-title">STATUS</h5>
             <h5 class="meta-desc">RELEASED</h5>
           </div>
           <div class="divider" />
-          <div class="meta-section">
+          <div class="meta-section flex-1">
             <h5 class="meta-title">LANGUAGE</h5>
             <h5 class="meta-desc">ENGLISH</h5>
           </div>
           <div class="divider" />
-          <div class="meta-section">
+          <div class="meta-section flex-1">
             <h5 class="meta-title">BUDGET</h5>
             <h5 class="meta-desc">$200,000,000.00</h5>
           </div>
           <div class="divider" />
-          <div class="meta-section">
+          <div class="meta-section flex-1">
             <h5 class="meta-title">PRODUCTION</h5>
             <h5 class="meta-desc">DC Entertainment</h5>
           </div>
@@ -166,7 +168,7 @@ const reviews: Review[] = [
   @apply text-white text-xs font-medium mt-[3px];
 }
 .meta-section {
-  @apply flex flex-col px-[34px] border-[rgba(255,255,255,0.2)] justify-center;
+  @apply flex flex-col md:px-[20px] xl:px-[34px] border-[rgba(255,255,255,0.2)] justify-center;
 }
 .divider {
   @apply w-[1px] bg-[rgba(255,255,255,0.2)];

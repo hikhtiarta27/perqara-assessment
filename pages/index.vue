@@ -12,7 +12,7 @@
           v-for="(banner, i) in banners"
           :id="`banner-${i}`"
           :key="i"
-          :class="`snap-always snap-center ${
+          :class="`snap-always snap-center transition-opacity ${
             activeBanner != i && 'opacity-50'
           }`"
         >
