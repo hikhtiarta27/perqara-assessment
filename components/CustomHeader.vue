@@ -1,8 +1,8 @@
 <template>
   <header
-    class="h-[66px] px-[120px] w-full bg-cs-gray-dark drop-shadow-lg flex flex-row items-center fixed top-0 z-20"
+    :class="`h-[66px] mx-global w-full flex flex-row items-center fixed top-0 z-20 ${props.bgColor} transition-colors duration-150`"
   >
-    <div>
+    <NuxtLink to="/">
       <svg
         width="113"
         height="31"
@@ -57,50 +57,72 @@
           fill="#E74C3C"
         />
       </svg>
-    </div>
+    </NuxtLink>
     <!-- search bar -->
-    <div
-      class="ml-[37px] flex flex-1 flex-row rounded-[4px] px-2 py-[5px] bg-cs-gray"
-    >
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
+    <div class="relative flex-1 ml-[37px]">
+      <div
+        :class="`flex flex-row rounded-[4px] px-2 py-[5px] ${
+          inputFocus ? 'bg-cs-gray-dark' : 'bg-[rgba(0,0,0,0.13)]'
+        }`"
       >
-        <g clip-path="url(#clip0_21_3)">
-          <path
-            d="M18 4L20 8H17L15 4H13L15 8H12L10 4H8L10 8H7L5 4H4C2.895 4 2.01 4.895 2.01 6L2 18C2 19.105 2.895 20 4 20H20C21.105 20 22 19.105 22 18V4H18Z"
-            fill="white"
-            fill-opacity="0.17"
-          />
-        </g>
-        <defs>
-          <clipPath id="clip0_21_3">
-            <rect width="24" height="24" fill="white" />
-          </clipPath>
-        </defs>
-      </svg>
-      <input
-        class="bg-cs-gray ml-2 text-white w-full outline-none"
-        placeholder="Find Movie"
-      />
-      <div class="mt-1">
         <svg
-          width="16"
-          height="16"
-          viewBox="0 0 16 16"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <path
-            d="M10.7656 9.3125C11.2344 8.575 11.5094 7.7 11.5094 6.75938C11.5094 4.13125 9.38125 2 6.75625 2C4.12812 2 2 4.13125 2 6.75938C2 9.3875 4.12813 11.5188 6.75313 11.5188C7.70625 11.5188 8.59375 11.2375 9.3375 10.7563L9.55313 10.6062L12.9469 14L14 12.9281L10.6094 9.53438L10.7656 9.3125ZM9.41875 4.1C10.1281 4.80937 10.5188 5.75312 10.5188 6.75625C10.5188 7.75937 10.1281 8.70313 9.41875 9.4125C8.70937 10.1219 7.76562 10.5125 6.7625 10.5125C5.75937 10.5125 4.81562 10.1219 4.10625 9.4125C3.39687 8.70313 3.00625 7.75937 3.00625 6.75625C3.00625 5.75312 3.39687 4.80937 4.10625 4.1C4.81562 3.39062 5.75937 3 6.7625 3C7.76562 3 8.70937 3.39062 9.41875 4.1Z"
-            fill="white"
-          />
+          <g clip-path="url(#clip0_21_3)">
+            <path
+              d="M18 4L20 8H17L15 4H13L15 8H12L10 4H8L10 8H7L5 4H4C2.895 4 2.01 4.895 2.01 6L2 18C2 19.105 2.895 20 4 20H20C21.105 20 22 19.105 22 18V4H18Z"
+              fill="white"
+              fill-opacity="0.17"
+            />
+          </g>
+          <defs>
+            <clipPath id="clip0_21_3">
+              <rect width="24" height="24" fill="white" />
+            </clipPath>
+          </defs>
         </svg>
+        <input
+          :class="`ml-2 text-white w-full outline-none ${
+            inputFocus ? 'bg-cs-gray-dark' : 'bg-transparent'
+          }`"
+          placeholder="Find Movie"
+          @focusin="inputFocus = true"
+          @focusout="inputFocus = false"
+        />
+        <div class="mt-1">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M10.7656 9.3125C11.2344 8.575 11.5094 7.7 11.5094 6.75938C11.5094 4.13125 9.38125 2 6.75625 2C4.12812 2 2 4.13125 2 6.75938C2 9.3875 4.12813 11.5188 6.75313 11.5188C7.70625 11.5188 8.59375 11.2375 9.3375 10.7563L9.55313 10.6062L12.9469 14L14 12.9281L10.6094 9.53438L10.7656 9.3125ZM9.41875 4.1C10.1281 4.80937 10.5188 5.75312 10.5188 6.75625C10.5188 7.75937 10.1281 8.70313 9.41875 9.4125C8.70937 10.1219 7.76562 10.5125 6.7625 10.5125C5.75937 10.5125 4.81562 10.1219 4.10625 9.4125C3.39687 8.70313 3.00625 7.75937 3.00625 6.75625C3.00625 5.75312 3.39687 4.80937 4.10625 4.1C4.81562 3.39062 5.75937 3 6.7625 3C7.76562 3 8.70937 3.39062 9.41875 4.1Z"
+              fill="white"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        :class="`bg-black w-full px-5 py-[18px] absolute rounded-br-lg rounded-bl-lg z-[-100] space-y-2 transition-all duration-150
+        ${inputFocus ? 'opacity-90 top-8' : 'opacity-0 top-[-50px]'}`"
+      >
+        <p
+          v-for="(autocomplete, i) in autocompleteList"
+          :key="i"
+          class="text-white font-normal text-sm"
+        >
+          <span class="font-semibold">{{ autocomplete[0] }}</span>
+          {{ autocomplete[1] }}
+        </p>
       </div>
     </div>
+
     <!-- navigation -->
     <nav class="ml-[45px] flex flex-row h-full">
       <button
@@ -155,8 +177,9 @@
           >
             <NuxtLink
               class="block px-4 py-2 hover:bg-gray-100 font-semibold text-xs text-cs-gray-dark"
-              >{{ dropdown }}</NuxtLink
             >
+              {{ dropdown }}
+            </NuxtLink>
           </li>
         </ul>
       </div>
@@ -178,6 +201,13 @@
   </header>
 </template>
 <script setup lang="ts">
+const props = defineProps({
+  bgColor: {
+    type: String,
+    required: false,
+    default: "bg-cs-gray",
+  },
+});
 const menus: string[] = ["Movies", "TV Shows", "LOGIN"];
 const dropdropMenu: string[] = [
   "Action",
@@ -192,5 +222,15 @@ const dropdropMenu: string[] = [
   "History",
   "Horror",
 ];
+const autocompleteList: Array<String[]> = [
+  ["Wonder", "Woman 1984"],
+  ["Wonder", "Woman"],
+  ["Wonder"],
+  ["Wonder", "Woman"],
+  ["Wonder", "Woman: Bloodlines"],
+  ["Wonder", "Park"],
+  ["Wonder", "Boys"],
+];
 const isDropdownHover = ref(false);
+const inputFocus = ref(false);
 </script>

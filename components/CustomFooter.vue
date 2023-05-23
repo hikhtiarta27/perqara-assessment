@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-black px-[120px] h-[160px] grid grid-cols-3">
+  <footer class="bg-black mx-global h-[160px] grid grid-cols-3">
     <div class="flex items-center">
       <p class="text-[#929292] text-sm">
         © 2021 MoovieTime. All rights reserved.

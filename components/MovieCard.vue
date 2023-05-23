@@ -8,13 +8,16 @@
     <div class="relative">
       <div class="absolute right-0">
         <h6
-          class="font-bold text-white py-[5px] px-[10px] bg-cs-gray-dark opacity-[80%]"
+          class="font-bold text-white py-[5px] px-[10px] bg-cs-gray-dark opacity-[80%] text-sm md:text-sm lg:text-base"
         >
           {{ props.movie.rating.toFixed(1) }}
         </h6>
       </div>
       <NuxtImg :src="props.movie.path" />
-      <div class="img-overlay">
+      <NuxtLink
+        class="absolute top-0 left-0 right-0 bottom-0 z-10 bg-black transition-all ease-in duration-100 opacity-0 bg-[rgba(0,0,0,0)] hover:bg-[rgba(0,0,0,0.8)] hover:opacity-100"
+        :to="`/movies/1`"
+      >
         <div
           class="flex flex-col h-full justify-between py-[70px] items-center"
         >
@@ -31,21 +34,25 @@
                 fill="#FFB802"
               />
             </svg>
-            <h5 class="font-semibold text-2xl text-white ml-[10px]">
+            <h5
+              class="font-semibold text-white ml-[10px] text-sm md:text-base lg:text-lg xl:text-2xl"
+            >
               {{ props.movie.rating }}
             </h5>
           </div>
           <h3 class="font-semibold text-[18px] text-white">Action</h3>
           <CustomButton label="View" />
         </div>
-      </div>
+      </NuxtLink>
     </div>
     <h4
-      class="mt-[13px] mb-[3px] text-base font-semibold text-white line-clamp-1"
+      class="mt-[13px] mb-[3px] font-semibold text-white line-clamp-1 text-xs md:text-sm lg:text-base xl:text-base"
     >
       {{ props.movie.title }}
     </h4>
-    <h6 class="text-sm font-normal text-[#929292]">{{ props.movie.year }}</h6>
+    <h6 class="text-xs md:text-sm font-normal text-[#929292]">
+      {{ props.movie.year }}
+    </h6>
   </div>
 </template>
 <script setup lang="ts">
@@ -61,8 +68,3 @@ const props = defineProps({
 
 const isHover = ref<boolean>(false);
 </script>
-<style scoped>
-.img-overlay {
-  @apply absolute top-0 left-0 right-0 bottom-0 z-10 bg-black transition-colors ease-in duration-100 opacity-0 hover:opacity-80;
-}
-</style>
