@@ -1,14 +1,27 @@
 <template>
   <section class="relative bg-cs-gray-dark">
-    <div class="w-full h-[300px] md:h-[340px] lg:h-[420px]">
-      <NuxtImg src="/img/bg-wonder-woman.png" class="w-full" />
+    <div class="w-full h-[150px] md:h-[340px] lg:h-[420px]">
+      <NuxtImg
+        loading="lazy"
+        src="/img/bg-wonder-woman.png"
+        class="w-full"
+        fit="cover"
+      />
     </div>
     <div class="relative">
       <div
         class="absolute z-10 ml-[40px] md:ml-[60px] lg:ml-[80px] xl:ml-[120px] top-0"
       >
-        <div class="flex flex-row items-start">
-          <NuxtImg src="/img/wonder-woman.png" width="220" height="330" />
+        <div
+          class="flex flex-row items-start w-[150px] h-[270px] md:w-[220px] md:h-[330px]"
+        >
+          <NuxtImg
+            preset="default"
+            loading="lazy"
+            src="/img/wonder-woman.png"
+            width="100%"
+            height="100%"
+          />
         </div>
       </div>
       <div class="ml-[260px] md:ml-[310px] lg:ml-[330px] xl:ml-[370px] mb-8">
@@ -86,7 +99,7 @@
           <h5 class="text-[#FF0000] font-semibold text-sm uppercase">
             Reviews
           </h5>
-          <div class="grid grid-cols-2 gap-5 mt-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-5 mt-6">
             <ReviewCard :review="reviews[0]" />
             <ReviewCard :review="reviews[1]" />
           </div>

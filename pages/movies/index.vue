@@ -12,9 +12,9 @@
           </h2>
         </div>
       </div>
-      <div class="flex flex-row items-start">
+      <div class="flex flex-col md:flex-row items-start">
         <div
-          class="mr-[30px] rounded-lg bg-black w-[160px] md:w-[220px] lg:w-[240px] py-5 space-y-[18px] cta-bg"
+          class="mr-[30px] rounded-lg bg-black w-full mb-4 md:mb-0 md:w-[220px] lg:w-[240px] py-5 space-y-[18px] cta-bg"
         >
           <h5 class="font-semibold text-base text-white-soft px-[18px]">
             Sort Result By

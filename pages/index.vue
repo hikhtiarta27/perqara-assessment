@@ -4,7 +4,7 @@
       <ul
         id="bannerCarousel"
         ref="bannerCarousel"
-        class="flex flex-row space-x-[32px] snap-x snap-mandatory overflow-x-hidden py-[76px]"
+        class="flex flex-row space-x-[32px] snap-x snap-mandatory overflow-x-hidden py-[76px] justify-start"
         @mouseover="disableScroll(true)"
         @mouseleave="disableScroll(false)"
       >
@@ -16,7 +16,7 @@
             activeBanner != i && 'opacity-50'
           }`"
         >
-          <CustomBanner />
+          <CustomBanner :banner="banner" />
         </li>
       </ul>
     </div>
@@ -24,7 +24,7 @@
       <li v-for="(_, i) in banners" :key="`indicator-${i}`">
         <button
           type="button"
-          :class="`transition-all duration-100 slider-indicator ${
+          :class="`transition-all duration-300 slider-indicator ${
             i == activeBanner ? 'active' : ''
           }`"
           @click="goToBanner(i)"
@@ -58,7 +58,7 @@
   </section>
 </template>
 <script setup lang="ts">
-import { Movie } from "~/types/movie";
+import { Movie, MovieBanner } from "~/types/movie";
 
 const movies: Movie[] = [
   {
@@ -128,10 +128,12 @@ const activeBanner = ref<number>(0);
 const goToBanner = (i: number) => {
   const carousel = document.getElementById("bannerCarousel");
   const bannerI = document.getElementById(`banner-${i}`);
+
   if (carousel && bannerI) {
-    carousel.scrollTo({
+    bannerI.scrollIntoView({
       behavior: "smooth",
-      left: (bannerI.offsetWidth / 1.5) * i,
+      block: "center",
+      inline: "center",
     });
   }
   activeBanner.value = i;
@@ -143,7 +145,89 @@ const disableScroll = (b: boolean) => {
     document.body.style.overflowX = "hidden";
   }
 };
-const banners: string[] = ["1", "2", "3", "4", "5"];
+const banners: MovieBanner[] = [
+  {
+    rating: 7.0,
+    title: "Wonder Woman",
+    year: 2020,
+    path: "/img/wonder-woman.png",
+    genre: "Super Power",
+    desc: `Senior year of high school takes center stage as Lara Jean returns from a family trip to Korea and considers her college plans — with and without Peter.`,
+  },
+  {
+    rating: 7.3,
+    title: "Space Sweeper",
+    year: 2021,
+    path: "/img/space-sweeper.png",
+    genre: "Sci-Fi",
+    desc: `When the crew of a space junk collector ship called The Victory
+        discovers a humanoid robot named Dorothy that's known to be a weapon of
+        mass destruction, they get involved in a risky business deal which puts
+        their lives at stake.`,
+  },
+  {
+    rating: 8.1,
+    title: "To All the Boys: Always and Forever",
+    year: 2021,
+    path: "/img/to-all-the-boys.png",
+    genre: "Drama",
+    desc: `Senior year of high school takes center stage as Lara Jean returns from a family trip to Korea and considers her college plans — with and without Peter.`,
+  },
+  {
+    rating: 7.0,
+    title: "Wonder Woman",
+    year: 2020,
+    path: "/img/wonder-woman.png",
+    genre: "Super Power",
+    desc: `Senior year of high school takes center stage as Lara Jean returns from a family trip to Korea and considers her college plans — with and without Peter.`,
+  },
+  {
+    rating: 7.3,
+    title: "Space Sweeper",
+    year: 2021,
+    path: "/img/space-sweeper.png",
+    genre: "Sci-Fi",
+    desc: `When the crew of a space junk collector ship called The Victory
+        discovers a humanoid robot named Dorothy that's known to be a weapon of
+        mass destruction, they get involved in a risky business deal which puts
+        their lives at stake.`,
+  },
+  {
+    rating: 8.1,
+    title: "To All the Boys: Always and Forever",
+    year: 2021,
+    path: "/img/to-all-the-boys.png",
+    genre: "Drama",
+    desc: `Senior year of high school takes center stage as Lara Jean returns from a family trip to Korea and considers her college plans — with and without Peter.`,
+  },
+  {
+    rating: 7.0,
+    title: "Wonder Woman",
+    year: 2020,
+    path: "/img/wonder-woman.png",
+    genre: "Super Power",
+    desc: `Senior year of high school takes center stage as Lara Jean returns from a family trip to Korea and considers her college plans — with and without Peter.`,
+  },
+  {
+    rating: 7.3,
+    title: "Space Sweeper",
+    year: 2021,
+    path: "/img/space-sweeper.png",
+    genre: "Sci-Fi",
+    desc: `When the crew of a space junk collector ship called The Victory
+        discovers a humanoid robot named Dorothy that's known to be a weapon of
+        mass destruction, they get involved in a risky business deal which puts
+        their lives at stake.`,
+  },
+  {
+    rating: 8.1,
+    title: "To All the Boys: Always and Forever",
+    year: 2021,
+    path: "/img/to-all-the-boys.png",
+    genre: "Drama",
+    desc: `Senior year of high school takes center stage as Lara Jean returns from a family trip to Korea and considers her college plans — with and without Peter.`,
+  },
+];
 </script>
 <style scoped>
 .slider-indicator {
@@ -153,6 +237,6 @@ const banners: string[] = ["1", "2", "3", "4", "5"];
   @apply h-[12px] w-[60px] bg-orange-primary rounded-full;
 }
 .slider {
-  @apply mt-[40px] flex justify-center mb-[47px] space-x-4 cursor-pointer;
+  @apply mb-[30px] lg:my-[40px] flex justify-center  space-x-4 cursor-pointer;
 }
 </style>

@@ -1,3 +1,4 @@
+import defaultTheme from "tailwindcss/defaultTheme";
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -18,7 +19,7 @@ module.exports = {
       },
     },
     fontFamily: {
-      sans: ["Montserrat"],
+      sans: ["Montserrat", ...defaultTheme.fontFamily.sans],
     },
   },
   plugins: [require("@tailwindcss/line-clamp")],

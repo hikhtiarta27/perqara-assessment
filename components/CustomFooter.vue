@@ -1,7 +1,7 @@
 <template>
   <footer class="bg-black mx-global h-[160px] grid grid-cols-3">
     <div class="flex items-center">
-      <p class="text-[#929292] text-sm">
+      <p class="text-[#929292] text-xs lg:text-sm">
         © 2021 MoovieTime. All rights reserved.
       </p>
     </div>
@@ -64,7 +64,7 @@
       </svg>
     </div>
     <div class="flex items-center justify-end">
-      <p class="text-[#929292] text-sm">Made with Nuxt 3</p>
+      <p class="text-[#929292] text-xs lg:text-sm">Made with Nuxt 3</p>
     </div>
   </footer>
 </template>

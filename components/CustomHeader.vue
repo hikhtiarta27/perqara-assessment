@@ -60,7 +60,7 @@
         </svg>
       </NuxtLink>
       <!-- search bar -->
-      <div class="relative flex-1 ml-[37px]">
+      <div class="relative flex-1 ml-[37px] hidden md:block">
         <div
           :class="`flex flex-row rounded-[4px] px-2 py-[5px] ${
             inputFocus ? 'bg-cs-gray-dark' : 'bg-[rgba(0,0,0,0.13)]'
@@ -125,11 +125,12 @@
       </div>
 
       <!-- navigation -->
-      <nav class="ml-[45px] flex-row h-full hidden lg:flex">
+      <nav class="ml-5 lg:ml-[45px] flex-row h-full flex">
         <button
           id="categories-dropdown"
-          class="flex flex-row items-center"
+          class="flex-row items-center hidden md:flex"
           type="button"
+          @click="isDropdownHover = true"
           @mouseover="isDropdownHover = true"
           @mouseleave="isDropdownHover = false"
         >
@@ -184,7 +185,7 @@
             </li>
           </ul>
         </div>
-        <ul class="flex flex-row">
+        <ul class="flex-row hidden lg:flex">
           <li
             v-for="menu in menus"
             :key="menu"
@@ -201,37 +202,41 @@
       </nav>
 
       <!-- sidebar -->
-      <button class="ml-4 justify-end lg:hidden" @click="showSidebar">
-        <svg
-          width="30"
-          height="30"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M4 18L20 18"
-            stroke="#FFF"
-            stroke-width="2"
-            stroke-linecap="round"
-          />
-          <path
-            d="M4 12L20 12"
-            stroke="#FFF"
-            stroke-width="2"
-            stroke-linecap="round"
-          />
-          <path
-            d="M4 6L20 6"
-            stroke="#FFF"
-            stroke-width="2"
-            stroke-linecap="round"
-          />
-        </svg>
-      </button>
+      <div class="ml-4 justify-end flex flex-1 md:flex-none lg:hidden">
+        <button @click="showSidebar">
+          <svg
+            width="30"
+            height="30"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M4 18L20 18"
+              stroke="#FFF"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+            <path
+              d="M4 12L20 12"
+              stroke="#FFF"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+            <path
+              d="M4 6L20 6"
+              stroke="#FFF"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </button>
+      </div>
     </header>
     <div
-      :class="`lg:hidden absolute top-0 bottom-0 z-20 overflow-hidden left-0 right-0`"
+      :class="`lg:hidden absolute top-0 bottom-0 overflow-hidden left-0 right-0 ${
+        isSidebarVisible ? 'z-20' : 'z-[-10]'
+      }`"
     >
       <div
         :class="`bg-white h-screen transition-all w-[220px] ${
@@ -241,6 +246,7 @@
         <ul class="flex flex-col w-full">
           <li v-for="menu in menus" :key="menu" class="flex">
             <NuxtLink
+              :onclick="showSidebar"
               class="px-[20px] font-semibold text-black text-sm uppercase hover:bg-gray-100 flex-1 py-3"
               :to="{ path: menu.toLowerCase() }"
             >
@@ -294,5 +300,17 @@ const inputFocus = ref(false);
 const isSidebarVisible = ref(false);
 const showSidebar = () => {
   isSidebarVisible.value = !isSidebarVisible.value;
+};
+
+watch(isSidebarVisible, (_, newValue) => {
+  disableScroll(!newValue);
+});
+
+const disableScroll = (b: boolean) => {
+  if (!b) {
+    document.body.className = "md:overflow-y-auto lg:overflow-y-auto";
+  } else {
+    document.body.className = "md:overflow-y-hidden lg:overflow-y-auto";
+  }
 };
 </script>

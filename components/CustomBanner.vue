@@ -1,11 +1,17 @@
 <template>
-  <div class="bg-black flex flex-row h-[324px] w-[540px]">
+  <div
+    class="bg-black flex flex-row h-[234px] md:h-[324px] w-screen md:w-[540px]"
+  >
     <div class="relative">
-      <div class="w-[244px] h-[324px] absolute top-[-7.5%]">
-        <NuxtImg src="/img/wonder-woman.png" />
+      <div
+        class="w-[174px] h-[274px] md:w-[244px] md:h-[324px] absolute top-[-7.5%]"
+      >
+        <NuxtImg loading="lazy" preset="default" :src="props.banner.path" />
       </div>
     </div>
-    <div class="py-[25px] px-6 ml-[246px]">
+    <div
+      class="py-[25px] px-6 ml-[174px] md:ml-[246px] flex flex-col overflow-hidden"
+    >
       <div class="flex flex-row items-center">
         <div class="w-4 h-4">
           <svg
@@ -21,24 +27,38 @@
             />
           </svg>
         </div>
-        <h5 class="font-bold text-lg text-white ml-[10px]">7.0</h5>
+        <h5 class="font-bold text-lg text-white ml-[10px]">
+          {{ props.banner.rating }}
+        </h5>
       </div>
-      <h1 class="font-medium text-white text-[28px] mt-1 mb-2">
-        Space Sweepers
+      <h1 class="font-medium text-white text-base md:text-[28px] mt-1 mb-2">
+        {{ props.banner.title }}
       </h1>
       <div class="flex flex-row items-center">
-        <span class="text-white text-base font-normal">2021</span>
+        <span class="text-white text-xs md:text-base font-normal">{{
+          props.banner.year
+        }}</span>
         <div
           class="w-[7px] h-[7px] bg-[rgba(255,255,255,0.5)] rounded-full mx-2"
         />
-        <span class="text-white text-base font-normal">Sci-Fi</span>
+        <span class="text-white text-xs md:text-base font-normal">{{
+          props.banner.genre
+        }}</span>
       </div>
       <p class="text-xs text-white mt-3 font-normal">
-        When the crew of a space junk collector ship called The Victory
-        discovers a humanoid robot named Dorothy that's known to be a weapon of
-        mass destruction, they get involved in a risky business deal which puts
-        their lives at stake.
+        {{ props.banner.desc }}
       </p>
     </div>
   </div>
 </template>
+<script setup lang="ts">
+import { PropType } from "vue";
+import { MovieBanner } from "~/types/movie";
+
+const props = defineProps({
+  banner: {
+    type: Object as PropType<MovieBanner>,
+    required: true,
+  },
+});
+</script>

@@ -20,9 +20,10 @@ export default defineNuxtConfig({
   debug: false,
   app: {
     head: {
-      title: "Nuxt3",
+      title: "MoovieTime",
       charset: "utf-8",
       viewport: "width=device-width, initial-scale=1",
+      link: [{ rel: "icon", href: "/new-favicon.svg" }],
     },
   },
   sourcemap: true,
@@ -37,11 +38,9 @@ export default defineNuxtConfig({
       "2xl": 1536,
     },
     presets: {
-      avatar: {
+      default: {
         modifiers: {
           format: "webp",
-          width: 50,
-          height: 50,
         },
       },
     },
