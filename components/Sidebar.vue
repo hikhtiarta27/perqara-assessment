@@ -1,14 +1,10 @@
 <template>
   <div
-    :class="`lg:hidden fixed top-0 bottom-0 overflow-hidden h-auto left-0 right-0 ${
-      isSidebarVisible ? 'z-20' : 'z-[-10]'
+    :class="`lg:hidden fixed top-0 bottom-0 overflow-hidden left-0 right-0 transition-opacity duration-200 mt-[66px] ${
+      isSidebarVisible ? 'opacity-100 z-[100]' : 'opacity-0 z-[-10]'
     }`"
   >
-    <div
-      :class="`bg-white h-screen transition-all w-[220px] ${
-        isSidebarVisible ? 'ml-0' : 'ml-[-30%]'
-      }`"
-    >
+    <div :class="`bg-white h-screen transition-all w-[220px]`">
       <ul class="flex flex-col w-full">
         <li v-for="menu in menus" :key="menu" class="flex">
           <NuxtLink
