@@ -308,9 +308,9 @@ watch(isSidebarVisible, (_, newValue) => {
 
 const disableScroll = (b: boolean) => {
   if (!b) {
-    document.body.className = "md:overflow-y-auto lg:overflow-y-auto";
+    document.body.className = "overflow-y-auto";
   } else {
-    document.body.className = "md:overflow-y-hidden lg:overflow-y-auto";
+    document.body.className = "overflow-y-hidden lg:overflow-y-auto";
   }
 };
 </script>

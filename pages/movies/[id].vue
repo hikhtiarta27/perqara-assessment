@@ -10,7 +10,7 @@
     </div>
     <div class="relative">
       <div
-        class="absolute z-10 ml-[40px] md:ml-[60px] lg:ml-[80px] xl:ml-[120px] top-0"
+        class="absolute z-10 ml-[20px] md:ml-[60px] lg:ml-[80px] xl:ml-[120px] top-0"
       >
         <div
           class="flex flex-row items-start w-[150px] h-[270px] md:w-[220px] md:h-[330px]"
@@ -24,8 +24,8 @@
           />
         </div>
       </div>
-      <div class="ml-[260px] md:ml-[310px] lg:ml-[330px] xl:ml-[370px] mb-8">
-        <p class="text-white font-medium text-lg">2022</p>
+      <div class="ml-[190px] md:ml-[310px] lg:ml-[330px] xl:ml-[370px] mb-8">
+        <p class="text-white font-medium text-sm md:text-lg">2022</p>
         <h1 class="text-white font-semibold text-lg md:text-3xl lg:text-4xl">
           Wonder Woman 1984
         </h1>
@@ -33,12 +33,16 @@
           Fantasy, Action, Adventure
         </p>
       </div>
-      <div class="meta-container relative h-[80px] bg-[rgba(0,0,0,0.5)]">
+      <div
+        class="meta-container relative h-[80px] md:h-[80px] bg-[rgba(0,0,0,0.5)]"
+      >
         <div
-          class="flex flex-row pr-[120px] md:ml-[290px] lg:ml-[310px] xl:ml-[330px] h-full py-[20px] md:overflow-x-scroll"
+          class="flex flex-col md:flex-row md:pr-[120px] ml-[190px] md:ml-[290px] lg:ml-[310px] xl:ml-[340px] h-full py-[20px] overflow-x-scroll"
         >
           <div class="meta-section flex-2">
-            <div class="flex flex-row items-center">
+            <div
+              class="flex flex-row-reverse md:flex-row items-center justify-end"
+            >
               <svg
                 width="28"
                 height="27"
@@ -52,11 +56,11 @@
                 />
               </svg>
               <h5
-                class="font-semibold text-white-soft ml-[10px] text-sm md:text-2xl xl:text-4xl"
+                class="font-semibold text-white-soft ml-[10px] text-sm md:text-2xl xl:text-4xl mr-2 md:mr-0"
               >
                 7.0
               </h5>
-              <div class="ml-3">
+              <div class="ml-0 md:ml-3">
                 <h5 class="meta-title">USER SCORES</h5>
                 <h5 class="meta-desc">3621 VOTES</h5>
               </div>
@@ -84,94 +88,18 @@
           </div>
         </div>
       </div>
-      <section class="bg-white pt-8 mx-global">
-        <div class="ml-[250px]">
-          <h5 class="text-[#FF0000] font-semibold text-sm uppercase">
-            Overview
-          </h5>
-          <p class="text-black text-sm max-w-[526px] leading-7 mt-2">
-            Wonder Woman comes into conflict with the Soviet Union during the
-            Cold War in the 1980s and finds a formidable foe by the name of the
-            Cheetah.
-          </p>
-        </div>
-        <div class="mt-10 pb-[58px]">
-          <h5 class="text-[#FF0000] font-semibold text-sm uppercase">
-            Reviews
-          </h5>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-5 mt-6">
-            <ReviewCard :review="reviews[0]" />
-            <ReviewCard :review="reviews[1]" />
-          </div>
-        </div>
-      </section>
-      <div class="py-[50px] bg-cs-gray-dark mx-global">
-        <h3 class="uppercase text-white font-semibold text-sm mb-9">
-          Recommendation Movies
-        </h3>
-        <div
-          class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 mx-auto"
-        >
-          <MovieCard v-for="(movie, i) in movies" :key="i" :movie="movie" />
-        </div>
-      </div>
+      <MovieReview />
+      <RecommendationMovie />
     </div>
   </section>
 </template>
 <script setup lang="ts">
-import { Movie } from "~/types/movie";
-import { Review } from "~/types/review";
+import MovieReview from "~/components/movie-detail/MovieReview.vue";
+import RecommendationMovie from "~/components/movie-detail/RecommendationMovie.vue";
+
 definePageMeta({
   layout: "header-trans",
 });
-
-const movies: Movie[] = [
-  {
-    rating: 7.0,
-    title: "Wonder Woman",
-    year: 2020,
-    path: "/img/wonder-woman.png",
-  },
-  {
-    rating: 6.4,
-    title: "Below Zero",
-    year: 2021,
-    path: "/img/below-zero.png",
-  },
-  {
-    rating: 6.3,
-    title: "The Little Things",
-    year: 2021,
-    path: "/img/little-thing.png",
-  },
-  {
-    rating: 6.5,
-    title: "Outside the Wire",
-    year: 2021,
-    path: "/img/outside-the-wire.png",
-  },
-  {
-    rating: 5.1,
-    title: "Black Water Abyss",
-    year: 2020,
-    path: "/img/black-water-abyss.png",
-  },
-];
-
-const reviews: Review[] = [
-  {
-    date: "December 18, 2020",
-    name: "Switch.",
-    rating: 7.0,
-    comment: `It isn't as easy as saying 'Wonder Woman 1984' is a good or bad movie. The pieces are there, and there are moments I adore, but it does come across as a bit of a mess, even though the action sequences are breathtaking. If you're a fan of the original film, you'll be more willing to take the ride, but for those more indifferent, it may be a bit of a blander sit. If you can and are planning to watch it, the theatrical experience is the way to go - there is nothing like seeing these stunning sets, fun action scenes and hearing Zimmer's jaw-dropping score like on the big screen. - Chris dos Santos`,
-  },
-  {
-    comment: `If you enjoy reading my Spoiler-Free reviews, please follow my blog @ https://www.msbreviews.com. <br> The superhero genre has been growing exponentially during the last decade, so it's bizarre to go through an entire year with only Birds of Prey and The New Mutants instead of literally dozens of films from both Marvel and DC. Thankfully, Warner Bros. decided to release Wonder Woman 1984 before the year's end, but not without a catch. Most people will only have the possibility of watching one of the few blockbusters of 2020 through HBO Max, a streaming service only`,
-    date: "December 18, 2020",
-    name: "msbreviews",
-    rating: 8.0,
-  },
-];
 </script>
 <style scoped>
 .meta-title {
@@ -181,7 +109,7 @@ const reviews: Review[] = [
   @apply text-white text-xs font-medium mt-[3px];
 }
 .meta-section {
-  @apply flex flex-col md:px-[20px] xl:px-[34px] border-[rgba(255,255,255,0.2)] justify-center;
+  @apply flex flex-col md:px-[20px] xl:px-[34px] border-[rgba(255,255,255,0.2)] justify-center mt-3 md:mt-0;
 }
 .divider {
   @apply w-[1px] bg-[rgba(255,255,255,0.2)];

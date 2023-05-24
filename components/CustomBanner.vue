@@ -53,11 +53,11 @@
 </template>
 <script setup lang="ts">
 import { PropType } from "vue";
-import { MovieBanner } from "~/types/movie";
+import { Movie } from "~/types/movie";
 
 const props = defineProps({
   banner: {
-    type: Object as PropType<MovieBanner>,
+    type: Object as PropType<Movie>,
     required: true,
   },
 });
