@@ -4,12 +4,17 @@
       :bg-color="`${
         !isScrolled ? 'bg-[rgba(255,255,255,0.05)]' : 'bg-cs-gray'
       }`"
+      @show-sidebar="showSidebar"
     />
     <slot />
     <CustomFooter />
+    <Sidebar ref="sidebarRef" />
   </div>
 </template>
 <script setup lang="ts">
+import { handleSidebar } from "~/composables/useHeader";
+const { showSidebar, sidebarRef } = handleSidebar();
+
 const isScrolled = ref<boolean>(false);
 
 const onScroll = () => {

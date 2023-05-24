@@ -201,9 +201,8 @@
         </ul>
       </nav>
 
-      <!-- sidebar -->
       <div class="ml-4 justify-end flex flex-1 md:flex-none lg:hidden">
-        <button @click="showSidebar">
+        <button @click="emits('showSidebar')">
           <svg
             width="30"
             height="30"
@@ -233,38 +232,15 @@
         </button>
       </div>
     </header>
-    <div
-      :class="`lg:hidden absolute top-0 bottom-0 overflow-hidden left-0 right-0 ${
-        isSidebarVisible ? 'z-20' : 'z-[-10]'
-      }`"
-    >
-      <div
-        :class="`bg-white h-screen transition-all w-[220px] ${
-          isSidebarVisible ? 'ml-0' : 'ml-[-30%]'
-        }`"
-      >
-        <ul class="flex flex-col w-full">
-          <li v-for="menu in menus" :key="menu" class="flex">
-            <NuxtLink
-              :onclick="showSidebar"
-              class="px-[20px] font-semibold text-black text-sm uppercase hover:bg-gray-100 flex-1 py-3"
-              :to="{ path: menu.toLowerCase() }"
-            >
-              <span>{{ menu }}</span>
-            </NuxtLink>
-          </li>
-        </ul>
-      </div>
-      <div
-        :class="`ml-[220px] absolute top-0 left-0 bottom-0 right-0 transition-all ${
-          isSidebarVisible ? 'bg-[rgba(0,0,0,0.5)]' : 'bg-[rgba(0,0,0,0)]'
-        }`"
-        @click="showSidebar"
-      ></div>
-    </div>
   </div>
 </template>
 <script setup lang="ts">
+import { menus } from "~/composables/useHeader";
+
+const emits = defineEmits<{
+  (e: "showSidebar"): void;
+}>();
+
 const props = defineProps({
   bgColor: {
     type: String,
@@ -272,7 +248,6 @@ const props = defineProps({
     default: "bg-cs-gray",
   },
 });
-const menus: string[] = ["Movies", "TV Shows", "LOGIN"];
 const dropdropMenu: string[] = [
   "Action",
   "Adventure",
@@ -297,20 +272,4 @@ const autocompleteList: Array<String[]> = [
 ];
 const isDropdownHover = ref(false);
 const inputFocus = ref(false);
-const isSidebarVisible = ref(false);
-const showSidebar = () => {
-  isSidebarVisible.value = !isSidebarVisible.value;
-};
-
-watch(isSidebarVisible, (_, newValue) => {
-  disableScroll(!newValue);
-});
-
-const disableScroll = (b: boolean) => {
-  if (!b) {
-    document.body.className = "overflow-y-auto";
-  } else {
-    document.body.className = "overflow-y-hidden lg:overflow-y-auto";
-  }
-};
 </script>
