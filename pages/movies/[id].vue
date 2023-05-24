@@ -4,23 +4,23 @@
       <NuxtImg
         loading="lazy"
         src="/img/bg-wonder-woman.png"
-        class="w-full"
         fit="cover"
+        alt="wonder-women.png"
+        sizes="xs:100vw sm:100vw md:100vw lg:100vw xl:100vw"
+        preset="default"
       />
     </div>
     <div class="relative">
       <div
         class="absolute z-10 ml-[20px] md:ml-[60px] lg:ml-[80px] xl:ml-[120px] top-0"
       >
-        <div
-          class="flex flex-row items-start w-[150px] h-[270px] md:w-[220px] md:h-[330px]"
-        >
+        <div class="flex flex-row items-start w-[150px] md:w-[220px]">
           <NuxtImg
             preset="default"
             loading="lazy"
             src="/img/wonder-woman.png"
-            width="100%"
-            height="100%"
+            alt="wonder-women.png"
+            sizes="xs:150px md:220px lg:440px"
           />
         </div>
       </div>

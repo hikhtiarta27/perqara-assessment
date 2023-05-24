@@ -3,10 +3,14 @@
     class="bg-black flex flex-row h-[234px] md:h-[324px] w-screen md:w-[540px]"
   >
     <div class="relative">
-      <div
-        class="w-[174px] h-[274px] md:w-[244px] md:h-[324px] absolute top-[-7.5%]"
-      >
-        <NuxtImg loading="lazy" preset="default" :src="props.banner.path" />
+      <div class="w-[174px] md:w-[244px] absolute top-[-7.5%]">
+        <NuxtImg
+          sizes="xs:174px md:244px lg:488px"
+          loading="lazy"
+          preset="default"
+          :src="props.banner.path"
+          :alt="props.banner.title"
+        />
       </div>
     </div>
     <div

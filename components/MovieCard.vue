@@ -13,7 +13,13 @@
           {{ props.movie.rating.toFixed(1) }}
         </h6>
       </div>
-      <NuxtImg loading="lazy" preset="default" :src="props.movie.path" />
+      <NuxtImg
+        loading="lazy"
+        preset="default"
+        :src="props.movie.path"
+        :alt="props.movie.title"
+        sizes="sm:180px md:220px lg:440px"
+      />
       <NuxtLink
         class="absolute top-0 left-0 right-0 bottom-0 z-1 bg-black transition-all ease-in duration-100 opacity-0 bg-[rgba(0,0,0,0)] hover:bg-[rgba(0,0,0,0.8)] hover:opacity-100"
         :to="`/movies/1`"

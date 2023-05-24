@@ -3,7 +3,7 @@
     <header
       :class="`h-[66px] mx-global w-full flex flex-row items-center fixed top-0 z-20 ${props.bgColor} transition-colors duration-150`"
     >
-      <NuxtLink to="/">
+      <NuxtLink aria-label="branc" to="/">
         <svg
           width="113"
           height="31"

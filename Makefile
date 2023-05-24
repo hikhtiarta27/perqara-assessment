@@ -1,4 +1,4 @@
-NAME=nuxt3
+NAME=moovie-time
 VERSION=1.0.0
 
 build:

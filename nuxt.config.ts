@@ -9,6 +9,9 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  nitro: {
+    compressPublicAssets: true,
+  },
   typescript: {
     strict: true,
   },
@@ -24,6 +27,9 @@ export default defineNuxtConfig({
       charset: "utf-8",
       viewport: "width=device-width, initial-scale=1",
       link: [{ rel: "icon", href: "/new-favicon.svg" }],
+      htmlAttrs: {
+        lang: "en",
+      },
     },
   },
   sourcemap: true,
@@ -42,6 +48,7 @@ export default defineNuxtConfig({
         modifiers: {
           format: "webp",
         },
+        provider: "static",
       },
     },
   },
