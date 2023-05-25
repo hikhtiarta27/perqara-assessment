@@ -5,4 +5,7 @@ build:
 	docker build -t $(NAME):$(VERSION) .
 
 run:
-	docker run -p 3000:3000 $(NAME):$(VERSION)
+	docker-compose up -d
+
+down:
+	docker-compose down
