@@ -6,13 +6,13 @@
   >
     <div :class="`bg-white h-screen transition-all w-[220px]`">
       <ul class="flex flex-col w-full">
-        <li v-for="menu in menus" :key="menu" class="flex">
+        <li v-for="menu in menus" :key="menu.path" class="flex">
           <NuxtLink
             :onclick="showSidebar"
             class="px-[20px] font-semibold text-black text-sm uppercase hover:bg-gray-100 flex-1 py-3"
-            :to="{ path: menu.toLowerCase() }"
+            :to="{ path: menu.path }"
           >
-            <span>{{ menu }}</span>
+            <span>{{ menu.label.toUpperCase() }}</span>
           </NuxtLink>
         </li>
       </ul>

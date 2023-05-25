@@ -188,14 +188,14 @@
         <ul class="flex-row hidden lg:flex">
           <li
             v-for="menu in menus"
-            :key="menu"
+            :key="menu.path"
             class="flex justify-center items-center"
           >
             <NuxtLink
               class="px-[20px] font-semibold text-white text-sm uppercase"
-              :to="{ path: menu.toLowerCase() }"
+              :to="{ path: menu.path }"
             >
-              <span>{{ menu }}</span>
+              <span>{{ menu.label.toUpperCase() }}</span>
             </NuxtLink>
           </li>
         </ul>
